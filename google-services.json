@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "632827762919",
+    "firebase_url": "https://passeio-aumigo-default-rtdb.firebaseio.com",
+    "project_id": "passeio-aumigo",
+    "storage_bucket": "passeio-aumigo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632827762919:android:2e8d4967b46c78ab726a42",
+        "android_client_info": {
+          "package_name": "com.example.passeio_aumigo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuAfDeQg322RdZH6u5WnVgFDjuhgnVI5w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632827762919:android:4b300b1657300ccf726a42",
+        "android_client_info": {
+          "package_name": "gd.passeio_aumigo.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuAfDeQg322RdZH6u5WnVgFDjuhgnVI5w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
