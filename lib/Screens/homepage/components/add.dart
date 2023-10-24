@@ -17,20 +17,20 @@ class _AddPageState extends State<AddPage> {
   String especie = '';
   String raca = '';
   String sexo = '';
-  String observacoes = '';
+  String observacao = '';
   // textfield
   final nomeController = TextEditingController();
   final especieController = TextEditingController();
   final racaController = TextEditingController();
   final sexoController = TextEditingController();
-  final observacoesController = TextEditingController();
+  final observacaoController = TextEditingController();
   //Clearing Text
   _clearText() {
     nomeController.clear();
     especieController.clear();
     racaController.clear();
     sexoController.clear();
-    observacoesController.clear();
+    observacaoController.clear();
   }
 
   //Resigtering Users
@@ -38,7 +38,7 @@ class _AddPageState extends State<AddPage> {
       FirebaseFirestore.instance.collection('Animal');
   Future<void> _registerUser() {
     return addUser
-        .add({'nome': nome, 'Especie': especie, 'Raça': raca, 'sexo': sexo, 'Observação': observacoes})
+        .add({'nome': nome, 'especie': especie, 'raca': raca, 'sexo': sexo, 'observacao': observacao})
         .then((value) => print('Pet Adicionado'))
         .catchError((_) => print('Erro para adiconar Pet'));
   }
@@ -50,7 +50,7 @@ class _AddPageState extends State<AddPage> {
     especieController.dispose();
     racaController.dispose();
     sexoController.dispose();
-    observacoesController.dispose();
+    observacaoController.dispose();
     super.dispose();
   }
 
@@ -70,7 +70,7 @@ class _AddPageState extends State<AddPage> {
             ),
             CustomTextEditField(
               controller: especieController,
-              labettxt: 'Especie',
+              labettxt: 'Espécie',
             ),
             CustomTextEditField(
               controller: racaController,
@@ -78,10 +78,10 @@ class _AddPageState extends State<AddPage> {
             ),
              CustomTextEditField(
               controller: sexoController,
-              labettxt: 'sexo',
+              labettxt: 'Sexo',
             ),
              CustomTextEditField(
-              controller: observacoesController,
+              controller: observacaoController,
               labettxt: 'Observação',
             ),
             Row(
@@ -95,7 +95,7 @@ class _AddPageState extends State<AddPage> {
                         especie = especieController.text;
                         raca = racaController.text;
                         sexo = sexoController.text;
-                        observacoes = observacoesController.text;
+                        observacao = observacaoController.text;
                         _registerUser();
                         _clearText();
                         Navigator.pop(context);

@@ -15,15 +15,15 @@ class _EditPageState extends State<EditPage> {
   final _formkey = GlobalKey<FormState>();
   CollectionReference updateUser =
       FirebaseFirestore.instance.collection('Animal');
-  Future<void> _updateUser(id, nome, especie, raca, sexo, observacoes ) {
+  Future<void> _updateUser(id, nome, especie, raca, sexo, observacao ) {
     return updateUser
         .doc(id)
         .update({
           'nome': nome,
-          'Especie': especie,
-          'Raça': raca,
+          'especie': especie,
+          'raca': raca,
           'sexo': sexo,
-          'Observação': observacoes,
+          'observacao': observacao
         })
         .then((value) => print("Pet atualizado"))
         .catchError((error) => print("Falha ao atualizar: $error"));
@@ -48,10 +48,10 @@ class _EditPageState extends State<EditPage> {
           //Getting Data From FireStore
           var data = snapshot.data?.data();
           var nome = data!['nome'];
-          var especie = data['Especie'];
-          var raca = data['Raça'];
+          var especie = data['especie'];
+          var raca = data['raca'];
           var sexo = data['sexo'];
-          var observacaoes = data['Observação'];
+          var observacao = data['observacao'];
           return Scaffold(
             appBar: AppBar(
               title: const Text('Editar'),
@@ -71,7 +71,7 @@ class _EditPageState extends State<EditPage> {
                         nome = value;
                       },
                       decoration: const InputDecoration(
-                        labelText: 'nome',
+                        labelText: 'Nome',
                         labelStyle: TextStyle(fontSize: 18),
                         errorStyle: TextStyle(color: Colors.red, fontSize: 15),
                         border: OutlineInputBorder(
@@ -87,42 +87,11 @@ class _EditPageState extends State<EditPage> {
                     ),
                     child: TextFormField(
                       initialValue: especie,
+                      onChanged: (value) {
+                        especie = value;
+                      },
                       decoration: const InputDecoration(
-                        labelText: 'Especie',
-                        labelStyle: TextStyle(fontSize: 18),
-                        errorStyle: TextStyle(color: Colors.red, fontSize: 15),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                        ),
-                      ),
-                    ),
-                  ),
-                   Container(
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 18,
-                      horizontal: 15,
-                    ),
-                    child: TextFormField(
-                      initialValue: raca,
-                      decoration: const InputDecoration(
-                        labelText: 'Raça',
-                        labelStyle: TextStyle(fontSize: 18),
-                        errorStyle: TextStyle(color: Colors.red, fontSize: 15),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                        ),
-                      ),
-                    ),
-                  ),
-                   Container(
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 18,
-                      horizontal: 15,
-                    ),
-                    child: TextFormField(
-                      initialValue: sexo,
-                      decoration: const InputDecoration(
-                        labelText: 'sexo',
+                        labelText: 'Espécie',
                         labelStyle: TextStyle(fontSize: 18),
                         errorStyle: TextStyle(color: Colors.red, fontSize: 15),
                         border: OutlineInputBorder(
@@ -137,12 +106,52 @@ class _EditPageState extends State<EditPage> {
                       horizontal: 15,
                     ),
                     child: TextFormField(
-                      initialValue: observacaoes,
+                      initialValue: raca,
                       onChanged: (value) {
-                        observacaoes = value;
+                        raca = value;
                       },
                       decoration: const InputDecoration(
-                        labelText: 'Observação',
+                        labelText: 'raca',
+                        labelStyle: TextStyle(fontSize: 18),
+                        errorStyle: TextStyle(color: Colors.red, fontSize: 15),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                      ),
+                    ),
+                  ),
+                 Container(
+                    margin: const EdgeInsets.symmetric(
+                      vertical: 18,
+                      horizontal: 15,
+                    ),
+                    child: TextFormField(
+                      initialValue: sexo,
+                      onChanged: (value) {
+                        sexo = value;
+                      },
+                      decoration: const InputDecoration(
+                        labelText: 'sexo',
+                        labelStyle: TextStyle(fontSize: 18),
+                        errorStyle: TextStyle(color: Colors.red, fontSize: 15),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                      ),
+                    ),
+                  ),
+                   Container(
+                    margin: const EdgeInsets.symmetric(
+                      vertical: 18,
+                      horizontal: 15,
+                    ),
+                    child: TextFormField(
+                      initialValue: observacao,
+                      onChanged: (value) {
+                        observacao = value;
+                      },
+                      decoration: const InputDecoration(
+                        labelText: 'observacao',
                         labelStyle: TextStyle(fontSize: 18),
                         errorStyle: TextStyle(color: Colors.red, fontSize: 15),
                         border: OutlineInputBorder(
@@ -158,12 +167,12 @@ class _EditPageState extends State<EditPage> {
                         onPressed: () {
                           if (_formkey.currentState!.validate()) {
                             setState(() {
-                              _updateUser(widget.docID, nome, especie, raca, sexo, observacaoes);
+                              _updateUser(widget.docID, nome, especie, raca, sexo, observacao);
                               Navigator.pop(context);
                             });
                           }
                         },
-                        child: const Text('Atulizar'),
+                        child: const Text('Atualizar'),
                       ),
                       ElevatedButton(
                         onPressed: () {},

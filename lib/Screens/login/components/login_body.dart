@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:passeio_aumigo/Screens/signup/sign_up%20reset.dart';
 import 'package:passeio_aumigo/components/my_button.dart';
 import 'package:passeio_aumigo/components/my_textfield.dart';
 
@@ -184,6 +185,28 @@ class _LoginBodyScreenState extends State<LoginBodyScreen> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => const SignUpScreen(),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(35, 0, 0, 0),
+                              child: Row(
+                                children: [
+                                  TextButton(
+                                    child: Text(
+                                      "Esqueceu sua senha?",
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 15,
+                                        color: HexColor("#44564a"),
+                                      ),
+                                    ),
+                                    onPressed: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => const SignUpReset(),
                                       ),
                                     ),
                                   ),
