@@ -3,8 +3,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:email_validator/email_validator.dart';
-
-// ignore: unused_import
 import 'package:passeio_aumigo/components/my_button.dart';
 import 'package:passeio_aumigo/controller/flow_controller.dart';
 import 'package:passeio_aumigo/controller/sign_up_controller.dart';
@@ -70,7 +68,6 @@ class _SignUpOneState extends State<SignUpOne> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // User Type Dropdown
                   Text(
                     "Vou usar para:",
                     style: GoogleFonts.poppins(
@@ -109,7 +106,6 @@ class _SignUpOneState extends State<SignUpOne> {
                   const SizedBox(
                     height: 1,
                   ),
-                  // Email Input
                   Text(
                     "E-mail",
                     style: GoogleFonts.poppins(
@@ -158,7 +154,6 @@ class _SignUpOneState extends State<SignUpOne> {
                   const SizedBox(
                     height: 5,
                   ),
-                  // Password Input
                   Text(
                     "Senha",
                     style: GoogleFonts.poppins(
@@ -198,7 +193,6 @@ class _SignUpOneState extends State<SignUpOne> {
                   const SizedBox(
                     height: 5,
                   ),
-                  // Proceed Button
                   MyButton(
                     buttonText: 'Prosseguir',
                     onPressed: () async {
@@ -206,9 +200,8 @@ class _SignUpOneState extends State<SignUpOne> {
                           signUpController.email != null &&
                           signUpController.password != null) {
                         bool isRegistered = await signUpController.registerUser(
-                          signUpController.email.toString(),
-                          signUpController.password.toString()
-                        );
+                            signUpController.email.toString(),
+                            signUpController.password.toString());
                         debugPrint(isRegistered.toString());
                         if (isRegistered) {
                           Get.snackbar("Success", "User Registered");
@@ -219,7 +212,6 @@ class _SignUpOneState extends State<SignUpOne> {
                       }
                     },
                   ),
-                  // Login Navigation
                   Padding(
                     padding: const EdgeInsets.fromLTRB(35, 0, 0, 0),
                     child: Row(

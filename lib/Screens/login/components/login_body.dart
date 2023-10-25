@@ -22,7 +22,6 @@ class _LoginBodyScreenState extends State<LoginBodyScreen> {
 
   void signUserIn() async {
     try {
-      // Entrar usando email e senha
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
@@ -33,12 +32,18 @@ class _LoginBodyScreenState extends State<LoginBodyScreen> {
   }
 
   void showErrorMessage(String message) {
-    // Mostrar um diálogo com a mensagem de erro
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(message),
+          title: Text(
+            "Ops!",
+            textAlign: TextAlign.center,
+          ),
+          content: Text(
+            "Parece que algo deu errado com o email ou a senha.\nVamos tentar de novo!",
+            textAlign: TextAlign.center,
+          ),
         );
       },
     );
@@ -73,10 +78,10 @@ class _LoginBodyScreenState extends State<LoginBodyScreen> {
             children: [
               Image.asset(
                 'assets/Images/PasseioAUmigo.png',
-                fit: BoxFit.cover, // Ajusta automaticamente ao tamanho da tela
+                fit: BoxFit.cover,
               ),
               Container(
-                height: 535, // Altura desejada
+                height: 535,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: HexColor("#A5BBE5"),
@@ -184,7 +189,8 @@ class _LoginBodyScreenState extends State<LoginBodyScreen> {
                                     onPressed: () => Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => const SignUpScreen(),
+                                        builder: (context) =>
+                                            const SignUpScreen(),
                                       ),
                                     ),
                                   ),
@@ -206,7 +212,8 @@ class _LoginBodyScreenState extends State<LoginBodyScreen> {
                                     onPressed: () => Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => const SignUpReset(),
+                                        builder: (context) =>
+                                            const SignUpReset(),
                                       ),
                                     ),
                                   ),

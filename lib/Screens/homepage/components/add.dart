@@ -10,21 +10,17 @@ class AddPage extends StatefulWidget {
 }
 
 class _AddPageState extends State<AddPage> {
-  //form key
   final _formkey = GlobalKey<FormState>();
-  // text for textfield
   String nome = '';
   String especie = '';
   String raca = '';
   String sexo = '';
   String observacao = '';
-  // textfield
   final nomeController = TextEditingController();
   final especieController = TextEditingController();
   final racaController = TextEditingController();
   final sexoController = TextEditingController();
   final observacaoController = TextEditingController();
-  //Clearing Text
   _clearText() {
     nomeController.clear();
     especieController.clear();
@@ -33,17 +29,20 @@ class _AddPageState extends State<AddPage> {
     observacaoController.clear();
   }
 
-  //Resigtering Users
-  CollectionReference addUser =
-      FirebaseFirestore.instance.collection('Animal');
+  CollectionReference addUser = FirebaseFirestore.instance.collection('Animal');
   Future<void> _registerUser() {
     return addUser
-        .add({'nome': nome, 'especie': especie, 'raca': raca, 'sexo': sexo, 'observacao': observacao})
+        .add({
+          'nome': nome,
+          'especie': especie,
+          'raca': raca,
+          'sexo': sexo,
+          'observacao': observacao
+        })
         .then((value) => print('Pet Adicionado'))
-        .catchError((_) => print('Erro para adiconar Pet'));
+        .catchError((_) => print('Erro para adicionar Pet'));
   }
 
-  //Disposing Textfield
   @override
   void dispose() {
     nomeController.dispose();
@@ -58,6 +57,7 @@ class _AddPageState extends State<AddPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 122, 110, 198),
         title: const Text('Adicionar'),
       ),
       body: Form(
@@ -76,11 +76,11 @@ class _AddPageState extends State<AddPage> {
               controller: racaController,
               labettxt: 'Raça',
             ),
-             CustomTextEditField(
+            CustomTextEditField(
               controller: sexoController,
               labettxt: 'Sexo',
             ),
-             CustomTextEditField(
+            CustomTextEditField(
               controller: observacaoController,
               labettxt: 'Observação',
             ),
@@ -103,14 +103,16 @@ class _AddPageState extends State<AddPage> {
                     }
                   },
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.blueAccent),
+                    backgroundColor: MaterialStateProperty.all(
+                        const Color.fromARGB(255, 146, 92, 240)),
                   ),
                   child: const Text('Salvar'),
                 ),
                 ElevatedButton(
                   onPressed: _clearText,
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.orangeAccent),
+                    backgroundColor: MaterialStateProperty.all(
+                        const Color.fromARGB(255, 146, 92, 240)),
                   ),
                   child: const Text('Limpar'),
                 ),

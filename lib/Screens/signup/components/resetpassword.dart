@@ -84,7 +84,6 @@ class _ResetPasswordState extends State<ResetPassword> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Email Input
                   Text(
                     "E-mail",
                     style: GoogleFonts.poppins(
@@ -134,17 +133,18 @@ class _ResetPasswordState extends State<ResetPassword> {
                     onPressed: () async {
                       if (emailController.value.text.isNotEmpty) {
                         final _status = await resetPassword(
-                            email: emailController.value.text.toString().trim());
+                            email:
+                                emailController.value.text.toString().trim());
                         if (_status == AuthStatus.successful) {
                           Get.snackbar("E-Mail Enviado",
                               "Verifique sua caixa de entrada");
                         } else {
-                          Get.snackbar("Falha no envio","Erro: " + _status.toString());
+                          Get.snackbar(
+                              "Falha no envio", "Erro: " + _status.toString());
                         }
                       }
                     },
                   ),
-                  // Login Navigation
                   Padding(
                     padding: const EdgeInsets.fromLTRB(35, 0, 0, 0),
                     child: Row(

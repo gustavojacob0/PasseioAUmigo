@@ -22,10 +22,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // Getting Student all Records
   final Stream<QuerySnapshot> studentRecords =
       FirebaseFirestore.instance.collection('Animal').snapshots();
-  // For Deleting Users
   CollectionReference delUser = FirebaseFirestore.instance.collection('Animal');
   Future<void> _delete(id) {
     return delUser
@@ -48,7 +46,6 @@ class _HomePageState extends State<HomePage> {
               child: CircularProgressIndicator(),
             );
           }
-          // Storing Data
           final List firebaseData = [];
           snapshot.data?.docs.map((DocumentSnapshot documentSnapshot) {
             Map store = documentSnapshot.data() as Map<String, dynamic>;
@@ -59,14 +56,15 @@ class _HomePageState extends State<HomePage> {
           var txt2;
           return Scaffold(
               appBar: AppBar(
+                backgroundColor: Color.fromARGB(255, 122, 110, 198),
                 title: Text('Meus Pets'),
                 actions: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.purpleAccent),
+                        backgroundColor: MaterialStateProperty.all(
+                            Color.fromARGB(255, 253, 253, 253)),
                       ),
                       onPressed: () {
                         Navigator.push(
@@ -76,7 +74,14 @@ class _HomePageState extends State<HomePage> {
                           ),
                         );
                       },
-                      child: const Text('Adicionar'),
+                      child: const Text(
+                        'Adicionar Pet',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 146, 92, 240),
+                        ),
+                      ),
                     ),
                   )
                 ],
@@ -95,33 +100,45 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           TableCell(
                             child: Container(
-                              color: Colors.greenAccent,
+                              color: Color.fromARGB(255, 165, 169, 249),
                               child: Center(
                                 child: Text(
                                   'Nome',
-                                  style: txt,
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 220, 223, 227),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                           TableCell(
                             child: Container(
-                              color: Colors.greenAccent,
+                              color: Color.fromARGB(255, 165, 169, 249),
                               child: Center(
                                 child: Text(
                                   'Raça',
-                                  style: txt,
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 220, 223, 227),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                           TableCell(
                             child: Container(
-                              color: Colors.greenAccent,
+                              color: Color.fromARGB(255, 165, 169, 249),
                               child: Center(
                                 child: Text(
                                   'Ações',
-                                  style: txt,
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 220, 223, 227),
+                                  ),
                                 ),
                               ),
                             ),
@@ -167,17 +184,16 @@ class _HomePageState extends State<HomePage> {
                                     },
                                     icon: const Icon(
                                       Icons.edit,
-                                      color: Colors.orange,
+                                      color: Color.fromARGB(255, 146, 92, 240),
                                     ),
                                   ),
                                   IconButton(
                                     onPressed: () {
                                       _delete(firebaseData[i]['id']);
-                                      //print(firebaseData);
                                     },
                                     icon: const Icon(
                                       Icons.delete,
-                                      color: Colors.red,
+                                      color: Color.fromARGB(255, 182, 147, 243),
                                     ),
                                   ),
                                 ],
@@ -185,7 +201,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ],
                         ),
-                      ], //this is loop
+                      ],
                     ],
                   ),
                 ),
@@ -200,8 +216,7 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => HomePage()),
+                          MaterialPageRoute(builder: (context) => HomePage()),
                         );
                       },
                     ),
@@ -211,7 +226,8 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Passeadores()),
+                          MaterialPageRoute(
+                              builder: (context) => Passeadores()),
                         );
                       },
                     ),
@@ -221,7 +237,8 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Agendamento()),
+                          MaterialPageRoute(
+                              builder: (context) => Agendamento()),
                         );
                       },
                     ),
@@ -251,7 +268,8 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Notificacao()),
+                          MaterialPageRoute(
+                              builder: (context) => Notificacao()),
                         );
                       },
                     ),
@@ -265,7 +283,7 @@ class _HomePageState extends State<HomePage> {
                         );
                       },
                     ),
-                     ListTile(
+                    ListTile(
                       leading: Icon(Icons.book),
                       title: Text('Sobre'),
                       onTap: () {

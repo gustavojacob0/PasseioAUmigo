@@ -44,7 +44,7 @@ class _SignUpBodyScreenState extends State<SignUpBodyScreen> {
               child: Column(
                 children: [
                   Container(
-                    height: 535, // Altura desejada
+                    height: 535,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: HexColor("#ffffff"),
@@ -55,12 +55,11 @@ class _SignUpBodyScreenState extends State<SignUpBodyScreen> {
                     ),
                     child: GetBuilder<FlowController>(
                       builder: (context) {
-                        // Mostra a visualização de acordo com o fluxo atual
                         if (flowController.currentFlow == 1) {
-                            return const SignUpOne();
-                          } else {
-                            return const AuthPage();
-                          }
+                          return const SignUpOne();
+                        } else {
+                          return const AuthPage();
+                        }
                       },
                     ),
                   ),

@@ -82,7 +82,6 @@ class _AgendamentoState extends State<Agendamento> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Implementar a lógica de agendamento aqui
                 print('Nome do Animal: $nomeAnimal');
                 print('Data e Hora do Passeio: $dataHoraPasseio');
               },
@@ -96,5 +95,5 @@ class _AgendamentoState extends State<Agendamento> {
 }
 
 void main() => runApp(MaterialApp(
-  home: Agendamento(),
-));
+      home: Agendamento(),
+    ));

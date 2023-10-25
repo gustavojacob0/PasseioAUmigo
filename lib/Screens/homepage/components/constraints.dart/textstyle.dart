@@ -29,15 +29,6 @@ class CustomTextEditField extends StatelessWidget {
         ),
         controller: controller,
         obscureText: visibility,
-        /*validator: (val) {
-          if (val == null || val.isEmpty) {
-            return 'Please Fill $labettxt';
-          }
-          if (valid && !val.contains('@')) {
-            return 'Please Enter Valid Email';
-          }
-          return null;
-        },*/
       ),
     );
   }

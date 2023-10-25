@@ -13,7 +13,7 @@ class _SobreState extends State<Sobre> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Sobre o Aplicativo'),
-        backgroundColor: Color(0xFFA5BBE5), // Cor de fundo da barra #A5BBE5
+        backgroundColor: Color(0xFFA5BBE5),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -77,30 +77,30 @@ class _SobreState extends State<Sobre> {
                 ],
               ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Icon(
-                    Icons.developer_mode,
-                    size: 40,
-                    color: Color(0xFFA5BBE5),
-                  ),
-                  SizedBox(height: 16),
-                  Text(
-                    'Desenvolvido por:',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Icon(
+                      Icons.developer_mode,
+                      size: 40,
                       color: Color(0xFFA5BBE5),
                     ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Gustato Jacob & Deivid Lima',
-                    style: TextStyle(
-                      fontSize: 20,
+                    SizedBox(height: 16),
+                    Text(
+                      'Desenvolvido por:',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFFA5BBE5),
+                      ),
                     ),
-                  ),]
-              ),
+                    SizedBox(height: 8),
+                    Text(
+                      'Gustato Jacob & Deivid Lima',
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                  ]),
             ),
           ],
         ),

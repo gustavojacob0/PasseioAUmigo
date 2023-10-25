@@ -67,7 +67,6 @@ class _AvaliacaoState extends State<Avaliacao> {
             ),
             ElevatedButton(
               onPressed: () {
-                // Implemente a lógica para enviar a avaliação e comentários
                 print('Avaliação: $_rating estrelas');
                 print('Comentários: $_comment');
               },

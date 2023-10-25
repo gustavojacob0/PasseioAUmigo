@@ -45,7 +45,6 @@ class _EditPageState extends State<EditPage> {
               child: CircularProgressIndicator(),
             );
           }
-          //Getting Data From FireStore
           var data = snapshot.data?.data();
           var nome = data!['nome'];
           var especie = data['especie'];

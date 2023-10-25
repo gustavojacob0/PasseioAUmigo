@@ -11,7 +11,8 @@ class _DicasState extends State<Dicas> {
   final List<Map<String, dynamic>> dicasList = [
     {
       'titulo': 'Passeios Diários',
-      'descricao': 'Leve seu pet para passeios diários para mantê-lo saudável e feliz.',
+      'descricao':
+          'Leve seu pet para passeios diários para mantê-lo saudável e feliz.',
       'icone': Icons.directions_walk,
       'cor': Colors.pink,
     },
@@ -50,7 +51,7 @@ class _DicasState extends State<Dicas> {
                 dica['titulo'],
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 16, // Reduzindo o tamanho do texto
+                  fontSize: 16,
                   color: dica['cor'],
                 ),
               ),
@@ -61,13 +62,13 @@ class _DicasState extends State<Dicas> {
                     children: [
                       Icon(
                         dica['icone'],
-                        size: 30, // Reduzindo o tamanho do ícone
+                        size: 30,
                         color: dica['cor'],
                       ),
-                      SizedBox(width: 12), // Reduzindo o espaçamento
+                      SizedBox(width: 12),
                       Text(
                         dica['descricao'],
-                        style: TextStyle(fontSize: 14), // Reduzindo o tamanho do texto
+                        style: TextStyle(fontSize: 14),
                       ),
                     ],
                   ),
