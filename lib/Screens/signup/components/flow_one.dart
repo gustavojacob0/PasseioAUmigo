@@ -19,6 +19,7 @@ class SignUpOne extends StatefulWidget {
 }
 
 class _SignUpOneState extends State<SignUpOne> {
+  final nameController = TextEditingController();
   final emailController = TextEditingController().obs;
   final passwordController = TextEditingController().obs;
   SignUpController signUpController = Get.put(SignUpController());
@@ -69,39 +70,35 @@ class _SignUpOneState extends State<SignUpOne> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Vou usar para:",
+                    "Nome",
                     style: GoogleFonts.poppins(
                       fontSize: 16,
                       color: HexColor("#8d8d8d"),
                     ),
                   ),
-                  DropdownButton<String>(
-                    value: dropdownValue,
-                    icon: const Icon(Icons.arrow_drop_down),
-                    elevation: 16,
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      color: HexColor("#8d8d8d"),
-                    ),
-                    isExpanded: true,
-                    underline: Container(
-                      height: 2,
-                      color: HexColor("#ffffff"),
-                    ),
-                    iconSize: 30,
-                    borderRadius: BorderRadius.circular(20),
-                    onChanged: (String? value) {
-                      setState(() {
-                        dropdownValue = value!;
-                        signUpController.setUserType(value);
-                      });
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  TextField(
+                    controller: nameController,
+                    onChanged: (value) {
+                      signUpController.setName(value);
                     },
-                    items: list.map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
+                    cursorColor: HexColor("#4f4f4f"),
+                    decoration: InputDecoration(
+                      hintText: "Seu nome",
+                      fillColor: HexColor("#f0f3f1"),
+                      contentPadding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                      hintStyle: GoogleFonts.poppins(
+                        fontSize: 15,
+                        color: HexColor("#8d8d8d"),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide.none,
+                      ),
+                      filled: true,
+                    ),
                   ),
                   const SizedBox(
                     height: 1,
@@ -204,10 +201,12 @@ class _SignUpOneState extends State<SignUpOne> {
                             signUpController.password.toString());
                         debugPrint(isRegistered.toString());
                         if (isRegistered) {
-                          Get.snackbar("Success", "User Registered");
+                          Get.snackbar(
+                              "Sucesso", "Usuário cadastrado com sucesso!!");
                           flowController.setFlow(2);
                         } else {
-                          Get.snackbar("Error", "Please fill all the fields");
+                          Get.snackbar(
+                              "Erro!", "Por favor preencher todos os campos");
                         }
                       }
                     },
@@ -253,11 +252,11 @@ class _SignUpOneState extends State<SignUpOne> {
   void validateEmail(String val) {
     if (val.isEmpty) {
       setState(() {
-        _errorMessage = "Email can not be empty";
+        _errorMessage = "O campo e-mail deve ser preenchido";
       });
     } else if (!EmailValidator.validate(val, true)) {
       setState(() {
-        _errorMessage = "Invalid Email Address";
+        _errorMessage = "E-mail inválido";
       });
     } else {
       setState(() {

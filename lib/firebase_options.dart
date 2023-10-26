@@ -12,24 +12,24 @@ class DefaultFirebaseOptions {
         return android;
       case TargetPlatform.iOS:
         throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+          'Parece que houve um problema com a configuração do DefaultFirebaseOptions para IOS. '
+          'Para resolver isso, recomenda-se reconfigurar o DefaultFirebaseOptions executando novamente a CLI do FlutterFire.',
         );
       case TargetPlatform.macOS:
         return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+          'Parece que houve um problema com a configuração do DefaultFirebaseOptions para Windows.'
+          'Para resolver isso, recomenda-se reconfigurar o DefaultFirebaseOptions executando novamente a CLI do FlutterFire.',
         );
       case TargetPlatform.linux:
         throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for linux - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+          'Parece que houve um problema com a configuração do DefaultFirebaseOptions para Linux.'
+          'Para resolver isso, recomenda-se reconfigurar o DefaultFirebaseOptions executando novamente a CLI do FlutterFire.',
         );
       default:
         throw UnsupportedError(
-          'DefaultFirebaseOptions are not supported for this platform.',
+          'Essa plataforma não suporta o DefaultFirebaseOptions.',
         );
     }
   }
