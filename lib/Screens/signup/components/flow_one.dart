@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,10 +7,10 @@ import 'package:email_validator/email_validator.dart';
 import 'package:passeio_aumigo/components/my_button.dart';
 import 'package:passeio_aumigo/controller/flow_controller.dart';
 import 'package:passeio_aumigo/controller/sign_up_controller.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 import '../../login/login.dart';
-
-List<String> list = <String>['Dono do Pet', 'Passeador'];
 
 class SignUpOne extends StatefulWidget {
   const SignUpOne({super.key});
@@ -25,7 +26,6 @@ class _SignUpOneState extends State<SignUpOne> {
   SignUpController signUpController = Get.put(SignUpController());
   FlowController flowController = Get.put(FlowController());
 
-  String dropdownValue = list.first;
   String _errorMessage = "";
 
   @override
@@ -201,6 +201,7 @@ class _SignUpOneState extends State<SignUpOne> {
                             signUpController.password.toString());
                         debugPrint(isRegistered.toString());
                         if (isRegistered) {
+                          signUserName();
                           Get.snackbar(
                               "Sucesso", "Usuário cadastrado com sucesso!!");
                           flowController.setFlow(2);
@@ -263,5 +264,21 @@ class _SignUpOneState extends State<SignUpOne> {
         _errorMessage = "";
       });
     }
+  }
+
+    void signUserName() async {
+      try {
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      await FirebaseFirestore.instance.collection('Usuario').doc(user.uid).set({
+        'nome': nameController.value.text,
+        'email': emailController.value.text,
+      });
+    }
+  } on FirebaseAuthException catch (e) {
+    Get.snackbar(
+      "Erro!", "Falha na tabela Usuario");
+  }
   }
 }

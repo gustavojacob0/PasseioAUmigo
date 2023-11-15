@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:passeio_aumigo/Screens/homepage/components/add.dart';
 import 'package:passeio_aumigo/Screens/homepage/components/agendamento.dart';
+import 'package:passeio_aumigo/Screens/homepage/components/perfil.dart';
 import 'package:passeio_aumigo/Screens/homepage/components/avaliacao.dart';
 import 'package:passeio_aumigo/Screens/homepage/components/constraints.dart/textstyle.dart';
 import 'package:passeio_aumigo/Screens/homepage/components/constraints.dart/textfield.dart';
@@ -33,6 +34,31 @@ class _HomePageState extends State<HomePage> {
         .catchError((_) => print('Erro ao excluir'));
   }
 
+Future<String> getUserName() async {
+  try {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore
+          .instance
+          .collection('Usuario')
+          .where('email', isEqualTo: user.email)
+          .get();
+      if (querySnapshot.docs.isNotEmpty) {
+        var userData = querySnapshot.docs[0].data();
+        return userData['nome'];
+      } else {
+        print('Nenhum documento encontrado para o email: ${user.email}');
+        return ''; 
+      }
+    } else {
+      return ''; 
+    }
+  } catch (e) {
+    print('Erro ao obter o nome do usuário: $e');
+    return ''; 
+  }
+}
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
@@ -54,10 +80,22 @@ class _HomePageState extends State<HomePage> {
           }).toList();
           var txt;
           var txt2;
+
           return Scaffold(
               appBar: AppBar(
                 backgroundColor: Color.fromARGB(255, 122, 110, 198),
-                title: Text('Meus Pets'),
+                title: FutureBuilder<String>(
+                future: getUserName(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Text('Carregando...');
+                  } else if (snapshot.hasError) {
+                    return Text('Erro ao obter o nome do usuário.');
+                  } else {
+                    return Text('Olá, ${snapshot.data} seus Pets');
+                  }
+                },
+              ),
                 actions: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -228,6 +266,17 @@ class _HomePageState extends State<HomePage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => Passeadores()),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.person),
+                      title: Text('Perfil'),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Perfil()),
                         );
                       },
                     ),
